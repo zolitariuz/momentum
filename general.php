@@ -17,15 +17,21 @@
 		<![endif]-->
 		<div class="container">
 
-			<header class="width clearfix">
+			<header>
+				<div  class="width clearfix">
 
-				<img class="span c-1" src="images/logo-momentum.png" alt="">
+					<img class="span c-1" src="images/logo-momentum.png" alt="">
+					<a class="movimientos span c-1 right boton" href="movimeintos.html">Movimientos</a>
 
-				<a class="columna c-1 right" href="movimeintos.html">Movimientos</a>
+				</div>
 
 			</header>
 
 			<div class="main width">
+
+				<form action="" method="post">
+					<input type="text" value="Código de Barras" >
+				</form>
 
 				<ul class="info-usuario clearfix">
 

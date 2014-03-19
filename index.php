@@ -17,7 +17,7 @@
 		<![endif]-->
 		<div class="container">
 
-			<header>
+			<header class="index" >
 
 				<img class="columna c-3 center block" src="images/logo-momentum.png" alt="">
 

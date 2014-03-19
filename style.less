@@ -70,6 +70,13 @@ figure {margin: 0;}
 	background-clip:         padding-box;
 }
 
+.transition (@transition: all 0.3s ease ) {
+	-webkit-transition: @transition;
+	-moz-transition:    @transition;
+	-ms-transition:     @transition;
+	-o-transition:      @transition;
+}
+
 /*** FRAMEWORK ***/
 
 //propiedades
@@ -136,6 +143,8 @@ figure {margin: 0;}
 
 //elementos
 p{ margin-bottom: 1em; }
+.boton{ margin-bottom: 10px; padding: 10px; border: none; .border-radius; color: @claro; background: @highlight; text-align: center; text-transform: lowercase; text-decoration: none; .transition; cursor: pointer; }
+
 
 //caracteristicas
 .block{ display: block; }
@@ -149,7 +158,14 @@ body{ background: #fff; .helvetica; }
 
 /*** HEADER ***/
 
-header{ margin-top: (@margen*2); margin-bottom: (@margen*2); }
+header{ margin-top: @margen; margin-bottom: @margen;
+	&.index{ margin-top: (@margen*2); margin-bottom: (@margen*2); }
+
+	.movimientos{ .helvetica(12px, 12px);
+		&:hover{ background: darken(@highlight, 10%); }
+	}
+
+}
 
 /*** FOOTER ***/
 
