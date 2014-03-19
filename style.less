@@ -1,0 +1,264 @@
+@charset 'utf-8';
+
+/*
+YUI 3.4.1 (build 4118)
+Copyright 2011 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+html{color:#000;background:#FFF}body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td{margin:0;padding:0}table{border-collapse:collapse;border-spacing:0}fieldset,img{border:0}address,caption,cite,code,dfn,em,strong,th,var{font-style:normal;font-weight:normal}ol,ul{list-style:none}caption,th{text-align:left}h1,h2,h3,h4,h5,h6{font-size:100%;font-weight:normal}q:before,q:after{content:''}abbr,acronym{border:0;font-variant:normal}sup{vertical-align:text-top}sub{vertical-align:text-bottom}input,textarea,select{font-family:inherit;font-size:inherit;font-weight:inherit}input,textarea,select{*font-size:100%}legend{color:#000}
+
+
+/*
+YUI 3.4.1 (build 4118)
+Copyright 2011 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+body{font:13px/1.231 arial,helvetica,clean,sans-serif;*font-size:small;*font:x-small}select,input,button,textarea{font:99% arial,helvetica,clean,sans-serif}table{font-size:inherit;font:100%}pre,code,kbd,samp,tt{font-family:monospace;*font-size:108%;line-height:100%}
+
+
+/*
+YUI 3.4.1 (build 4118)
+Copyright 2011 Yahoo! Inc. All rights reserved.
+Licensed under the BSD License.
+http://yuilibrary.com/license/
+*/
+h1{font-size:138.5%}h2{font-size:123.1%}h3{font-size:108%}h1,h2,h3{margin:1em 0}h1,h2,h3,h4,h5,h6,strong{font-weight:bold}abbr,acronym{border-bottom:1px dotted #000;cursor:help}em{font-style:italic}blockquote,ul,ol,dl{margin:1em}ol,ul,dl{margin-left:2em}ol{list-style:decimal outside}ul{list-style:disc outside}dl dd{margin-left:1em}th,td{border:1px solid #000;padding:.5em}th{font-weight:bold;text-align:center}caption{margin-bottom:.5em;text-align:center}p,fieldset,table,pre{margin-bottom:1em}input[type=text],input[type=password],textarea{width:12.25em;*width:11.9em}
+/*HTML5 element display*/
+article, aside, details, figcaption, figure, footer, header, hgroup, nav, section{display:block;}
+/*Figures*/
+figure {margin: 0;}
+
+/* Utilities */
+.lst_reset, .lst_reset li { margin: 0; padding: 0; list-style: none; }
+.clear { clear:both; height:1px; margin:0; padding:0; font-size: 1px; line-height: 0; }
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+/* clearfix for modern browsers */
+.clearfix:before,
+.clearfix:after { content:""; display:table; }
+.clearfix:after { clear:both; }
+/* For IE 6/7 (trigger hasLayout) */
+.clearfix { zoom:1; }
+
+
+/*** FONTFACE ***/
+
+@font-face {
+  font-family: 'hp regular';
+  src: url('fonts/hpsimplified_rg-webfont.eot');
+  src: url('fonts/hpsimplified_rg-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/hpsimplified_rg-webfont.woff') format('woff'), url('fonts/hpsimplified_rg-webfont.ttf') format('truetype'), url('fonts/hpsimplified_rg-webfont.svg#hp_simplifieditalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hp bold';
+  src: url('fonts/hpsimplified_bd-webfont.eot');
+  src: url('fonts/hpsimplified_bd-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/hpsimplified_bd-webfont.woff') format('woff'), url('fonts/hpsimplified_bd-webfont.ttf') format('truetype'), url('fonts/hpsimplified_bd-webfont.svg#hp_simplifiedbold') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hp bold italic';
+  src: url('fonts/hpsimplified_bdit-webfont.eot');
+  src: url('fonts/hpsimplified_bdit-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/hpsimplified_bdit-webfont.woff') format('woff'), url('fonts/hpsimplified_bdit-webfont.ttf') format('truetype'), url('fonts/hpsimplified_bdit-webfont.svg#hp_simplifiedbold_italic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hp italic';
+  src: url('fonts/hpsimplified_it-webfont.eot');
+  src: url('fonts/hpsimplified_it-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/hpsimplified_it-webfont.woff') format('woff'), url('fonts/hpsimplified_it-webfont.ttf') format('truetype'), url('fonts/hpsimplified_it-webfont.svg#hp_simplifieditalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hp lt';
+  src: url('fonts/hpsimplified_lt-webfont.eot');
+  src: url('fonts/hpsimplified_lt-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/hpsimplified_lt-webfont.woff') format('woff'), url('fonts/hpsimplified_lt-webfont.ttf') format('truetype'), url('fonts/hpsimplified_lt-webfont.svg#hp_simplifieditalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'hp lt it';
+  src: url('fonts/hpsimplified_ltit-webfont.eot');
+  src: url('fonts/hpsimplified_ltit-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/hpsimplified_ltit-webfont.woff') format('woff'), url('fonts/hpsimplified_ltit-webfont.ttf') format('truetype'), url('fonts/hpsimplified_ltit-webfont.svg#hp_simplifieditalic') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/*** VARIABLES ***/
+
+@claro: 	#fff;
+@highlight:	#1aa2dc;
+
+@margen: 	20px;
+
+/*** MIXINS ***/
+
+.hp( @size: 14px, @line: 18px, @family: 'hp regular'){
+	font: @size / @line @family;
+}
+
+.border-radiuses (@topright: 0, @bottomright: 0, @bottomleft: 0, @topleft: 0) {
+  -webkit-border-top-right-radius:    @topright;
+  -webkit-border-bottom-right-radius: @bottomright;
+  -webkit-border-bottom-left-radius:  @bottomleft;
+  -webkit-border-top-left-radius:     @topleft;
+
+  -moz-border-radius-topright:        @topright;
+  -moz-border-radius-bottomright:     @bottomright;
+  -moz-border-radius-bottomleft:      @bottomleft;
+  -moz-border-radius-topleft:         @topleft;
+
+  border-top-right-radius:            @topright;
+  border-bottom-right-radius:         @bottomright;
+  border-bottom-left-radius:          @bottomleft;
+  border-top-left-radius:             @topleft;
+
+  -moz-background-clip:    padding;
+  -webkit-background-clip: padding-box;
+  background-clip:         padding-box;
+}
+
+
+/*** FRAMEWORK ***/
+
+//propiedades
+.hide{ display: none; }
+
+//layout
+.width{ width: 90%; min-width: 300px; margin: 0 auto @margen auto; }
+
+.center{ margin-left: auto !important; margin-right: auto !important; float: none !important; }
+.left{ float: left !important; }
+.right{ float: right !important; }
+
+.first{ margin-left: 0; padding-left: 0; }
+.last{ margin-right: 0; padding-right: 0; }
+
+.columna{
+	float: left;
+	margin: 0 1%;
+
+	&.c-1{ width: 6.3%; }
+	&.c-2{ width: 14.6%; }
+	&.c-3{ width: 22.9%; }
+	&.c-4{ width: 31.2%; }
+	&.c-5{ width: 39.5%; }
+	&.c-6{ width: 47.8%; }
+	&.c-7{ width: 56.1%; }
+	&.c-8{ width: 64.4%; }
+	&.c-9{ width: 72.7%; }
+	&.c-10{ width: 81%; }
+	&.c-11{ width: 89.3%; }
+	&.c-12{ width: 97.6%; }
+
+	&.grid{ background: @highlight; color: @claro; padding: @margen; text-align: center; }
+
+  img{ width: 100%; height: auto; margin: 0 0 @margen 0; }
+
+}
+
+.span{ float: left;
+  &.c-1{ width: 8.3%; }
+  &.c-2{ width: 16.6%; }
+  &.c-3{ width: 24.9%; }
+  &.c-4{ width: 33.2%; }
+  &.c-5{ width: 41.5%; }
+  &.c-6{ width: 49.8%; }
+  &.c-7{ width: 58.1%; }
+  &.c-8{ width: 66.4%; }
+  &.c-9{ width: 74.7%; }
+  &.c-10{ width: 83%; }
+  &.c-11{ width: 91.3%; }
+  &.c-12{ width: 99.6%; }
+
+  img{ width: 100%; height: auto; margin: 0 0 @margen 0; }
+}
+
+//elementos
+p{ margin-bottom: 1em; }
+
+//caracteristicas
+.text-center{ text-align: center; }
+
+
+/*** GENERAL ***/
+
+body{ background: #fff; .hp; }
+
+/*** HEADER ***/
+
+/*** FOOTER ***/
+
+/*** MEDIA QUERIES ***/
+
+@media only screen and (max-width : 1024px) {
+
+
+}
+
+@media only screen and (max-width : 768px) {
+
+  //Framework
+  .columna{
+
+    &.medium-1{ width: 6.3%; }
+    &.medium-2{ width: 14.6%; }
+    &.medium-3{ width: 22.9%; }
+    &.medium-4{ width: 31.2%; }
+    &.medium-5{ width: 39.5%; }
+    &.medium-6{ width: 47.8%; }
+    &.medium-7{ width: 56.1%; }
+    &.medium-8{ width: 64.4%; }
+    &.medium-9{ width: 72.7%; }
+    &.medium-10{ width: 81%; }
+    &.medium-11{ width: 89.3%; }
+    &.medium-12{ width: 97.6%; }
+  }
+
+}
+
+@media only screen and (max-width : 480px) {
+
+  //Framework
+  .columna{
+
+    &.small-1{ width: 6.3%; }
+    &.small-2{ width: 14.6%; }
+    &.small-3{ width: 22.9%; }
+    &.small-4{ width: 31.2%; }
+    &.small-5{ width: 39.5%; }
+    &.small-6{ width: 47.8%; }
+    &.small-7{ width: 56.1%; }
+    &.small-8{ width: 64.4%; }
+    &.small-9{ width: 72.7%; }
+    &.small-10{ width: 81%; }
+    &.small-11{ width: 89.3%; }
+    &.small-12{ width: 97.6%; }
+  }
+
+  .span{
+
+    &.small-1{ width: 8.3%; }
+    &.small-2{ width: 16.6%; }
+    &.small-3{ width: 24.9%; }
+    &.small-4{ width: 33.2%; }
+    &.small-5{ width: 41.5%; }
+    &.small-6{ width: 49.8%; }
+    &.small-7{ width: 58.1%; }
+    &.small-8{ width: 66.4%; }
+    &.small-9{ width: 74.7%; }
+    &.small-10{ width: 83%; }
+    &.small-11{ width: 91.3%; }
+    &.small-12{ width: 99.6%; }
+
+  }
+}
+
