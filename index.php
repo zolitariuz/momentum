@@ -25,7 +25,7 @@
 
 			<div class="main clearfix">
 
-				<form class="login-form columna c-4 center block" action="" method="post">
+				<form class="login-form columna c-4 center block" action="ValidaLogin.php" method="post">
 					<input class="full" name="usuario" type="text" value="usuario" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" >
 					<input class="full" name="password" type="password" value="password" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
 					<input class="full" type="submit" value="entrar">
