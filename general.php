@@ -17,57 +17,18 @@
 		<![endif]-->
 		<div class="container">
 
-			<header>
-				<div  class="width clearfix">
+			<header class="index" >
 
-					<img class="span c-1" src="images/logo-momentum.png" alt="">
-					<a class="movimientos span c-1 right boton" href="movimeintos.html">Movimientos</a>
-
-				</div>
+				<img class="columna c-3 center block" src="images/logo-momentum.png" alt="">
 
 			</header>
 
 			<div class="main width">
 
-				<form action="" method="post">
-					<input type="text" value="Código de Barras" >
+				<form class="codigo-form columna c-6 center" action="check.php" method="post">
+					<input name="codigo" class="full" type="text" >
+					<label class="text-center full block" for="codigo">Código de Barras</label>
 				</form>
-
-				<ul class="info-usuario clearfix">
-
-					<li class="columna c-8">Nombre y Apellido</li>
-					<li class="columna c-2">Número de cuarto</li>
-					<li class="columna c-2">$680</li>
-
-				</ul><!-- info-usuario -->
-
-				<ul class="info-usuario clearfix">
-
-					<li class="columna c-4">País</li>
-					<li class="columna c-4">RP</li>
-					<li class="columna c-4">Tipo de usuario</li>
-
-				</ul><!-- info-usuario -->
-
-				<nav class="general">
-					<ul>
-						<li>
-							<a href="check.html">Check-in / Check-out</a>
-						</li>
-						<li>
-							<a href="alimentos.html">Alimentos</a>
-						</li>
-						<li>
-							<a href="fiesta.html">Fiesta</a>
-						</li>
-						<li>
-							<a href="merchandise.html">Merchandise</a>
-						</li>
-						<li>
-							<a href="saldo.html">Saldo</a>
-						</li>
-					</ul>
-				</nav>
 
 			</div><!-- main -->
 
