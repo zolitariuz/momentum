@@ -76,7 +76,17 @@
 		<footer>
 
 		</footer>
-
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				 $('form input').keypress(function (e) {
+				   	if (e.which == 13) {
+				     	alert(1);
+				     	return false;    //<---- Add this line
+					}
+				});
+			})
+		</script>
 	</body>
 
 </html>
