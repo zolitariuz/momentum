@@ -3,8 +3,8 @@
 	$cb = $_GET['cb'];
 
 	// ¿existe sesión activa y usuario válido?
-	if(isset($_SESSION['usuario']) ){
-		$deco = existeCodBar($cb);
+	$deco = existeCodBar($cb);
+	if(isset($_SESSION['usuario']) && $deco ) {
 		$nombre =  $deco['nombre'];
 		$apellidos = $deco['apellido'];
 		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
@@ -170,16 +170,18 @@
 
 </html>
 <?php
-	}	
-	else
+	} else if(isset($_SESSION['usuario'])) 
 		header('Location: general.php');
+	else 
+		header('Location: index.php');
 
+	// FUNCIONES
 	function existeCodBar($cb) {
 		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
 		if (mysqli_connect_errno()){
 		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
 		} 
-		$qUsuario="SELECT * FROM T_Usuario WHERE F_Id = '".$cb."'";
+		$qUsuario="SELECT * FROM T_Usuario T WHERE T.F_Id = '".$cb."'";
 		$aUsuario=mysqli_query($con, $qUsuario);
 		
 		if($rUsuario = mysqli_fetch_array($aUsuario)) {
