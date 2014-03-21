@@ -1,6 +1,15 @@
 <?php 
 	session_start();
-	if(isset($_SESSION['usuario'])){
+	$cb = $_GET['cb'];
+
+	// ¿existe sesión activa y usuario válido?
+	if(isset($_SESSION['usuario']) ){
+		$deco = existeCodBar($cb);
+		$nombre =  $deco['nombre'];
+		$apellidos = $deco['apellido'];
+		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
+		$pais = $deco['pais'];
+
 ?>
 <!doctype html>
 	<head>
@@ -62,22 +71,22 @@
 			</header>
 
 			<div class="main width">
-
+				<p class="saldo columna c-2 right">Saldo: $680</p>
+				<div class="clearfix"></div>
 				<div class="info-usuario">
 
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre:</strong></li>
+						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
 						<li class="columna c-2"><strong>No. de cuarto:</strong></li>
-						<li class="saldo columna c-2">Saldo: $680</li>
-
+						
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>País:</strong></li>
+						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
 						<li class="columna c-4"><strong>RP:</strong></li>
-						<li class="columna c-4"><strong>Tipo de usuario:</strong></li>
+						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
 
 					</ul><!-- info-usuario -->
 
@@ -163,6 +172,28 @@
 <?php
 	}	
 	else
-		//header('Location: index.php');
+		header('Location: general.php');
+
+	function existeCodBar($cb) {
+		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
+		if (mysqli_connect_errno()){
+		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
+		} 
+		$qUsuario="SELECT * FROM T_Usuario WHERE F_Id = '".$cb."'";
+		$aUsuario=mysqli_query($con, $qUsuario);
+		
+		if($rUsuario = mysqli_fetch_array($aUsuario)) {
+			$datosUsuario = array(
+				"nombre"=>$rUsuario['F_Nombre'],
+				"apellido"=>$rUsuario['F_Apellidos'],
+				"pais"=>$rUsuario['F_Pais'],
+				"tipo"=>$rUsuario['F_Tipo'],
+
+			);
+			return $datosUsuario;
+		} else {
+			return 0;
+		}
+	}
 ?>
 
