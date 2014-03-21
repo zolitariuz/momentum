@@ -61,7 +61,7 @@
 								<a href="saldo.php">Saldo</a>
 							</li>
 							<li class="columna c-2">
-								<a href="saldo.php">Movimientos</a>
+								<a href="movimientos.php">Movimientos</a>
 							</li>
 						</ul>
 					</nav>
