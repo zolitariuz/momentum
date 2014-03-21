@@ -1,3 +1,7 @@
+<?php 
+	echo $_SESSION['usuario'];
+	if(isset($_SESSION['usuario'])){
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -28,6 +32,7 @@
 				<form class="codigo-form columna c-6 center" action="check.php" method="post">
 					<input name="codigo" class="full" type="text" >
 					<label class="text-center full block" for="codigo">Código de Barras</label>
+					<button type="submit" class="hide"></submit>
 				</form>
 
 			</div><!-- main -->
@@ -43,12 +48,15 @@
 				 $('form input').keypress(function (e) {
 				   	if (e.which == 13) {
 				     	alert(1);
-				     	return false;    //<---- Add this line
+				     	return false;
 					}
 				});
 			})
 		</script>
 	</body>
-
 </html>
-
+<?php
+	}	
+	else
+		header('Location: index.php');
+?>
