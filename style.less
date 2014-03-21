@@ -233,6 +233,14 @@ h3{ text-align: center; }
 
 .merch{ padding: (@margen*3); .helvetica( 28px, 28px ); }
 
+/*** SALDO ***/
+
+.saldo-form{
+	input{ margin-bottom: @margen; padding: (@margen/2); .border-radius; height: (@margen*2);
+		&[type='text'], &[type='password']{ border: 1px solid @highlight; }
+		&[type='submit']{ border: none; background: @highlight; color: @claro; }
+	}
+}
 
 /*** MEDIA QUERIES ***/
 

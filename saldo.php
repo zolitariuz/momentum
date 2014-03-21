@@ -81,7 +81,7 @@
 
 				<h2>Agregr salgo</h2>
 
-				<form class="columna c-6 center" action="">
+				<form class="saldo-form columna c-6 center" action="">
 					<input class="full" type="text">
 					<input class="text-center center columna c-6 block" type="submit" value="agregar">
 				</form>
