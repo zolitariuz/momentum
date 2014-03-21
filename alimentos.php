@@ -64,7 +64,7 @@
 
 						<li class="columna c-8"><strong>Nombre:</strong></li>
 						<li class="columna c-2"><strong>No. de cuarto:</strong></li>
-						<li class="saldo columna c-2">$680</li>
+						<li class="saldo columna c-2">Saldo: $680</li>
 
 					</ul><!-- info-usuario -->
 
