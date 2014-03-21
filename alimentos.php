@@ -41,7 +41,7 @@
 							<li class="columna c-2">
 								<a href="check.php">Check-in/out</a>
 							</li>
-							<li class="columna c-2">
+							<li class="activo columna c-2">
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">

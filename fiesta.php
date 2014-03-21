@@ -44,7 +44,7 @@
 							<li class="columna c-2">
 								<a href="alimentos.php">Alimentos</a>
 							</li>
-							<li class="columna c-2">
+							<li class="activo columna c-2">
 								<a href="fiesta.php">Fiesta</a>
 							</li>
 							<li class="columna c-2">
@@ -95,7 +95,7 @@
 
 				<div class="columna c-6">
 
-					<div class="merch boton">Hard Licor $60</div>
+					<div class="merch boton">Hard liquor $60</div>
 
 				</div><!-- columna c-6 -->
 

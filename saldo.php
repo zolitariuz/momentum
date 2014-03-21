@@ -50,7 +50,7 @@
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
 							</li>
-							<li class="columna c-2">
+							<li class="activo columna c-2">
 								<a href="saldo.php">Saldo</a>
 							</li>
 							<li class="columna c-2">
@@ -85,7 +85,7 @@
 
 				</div><!-- info-usuario -->
 
-				<h2>Agregr salgo</h2>
+				<h2>Agregar salgo</h2>
 
 				<form class="saldo-form columna c-6 center" action="">
 					<input class="full" type="text">
