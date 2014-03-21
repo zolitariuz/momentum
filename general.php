@@ -1,3 +1,9 @@
+<?php 
+	$id = $_POST['id'];
+	session_start($id);
+
+	if(isset($_SESSION['usuario'])){
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -25,7 +31,7 @@
 
 			<div class="main width">
 
-				<form class="codigo-form columna c-6 center" action="check.php" method="post">
+				<form name="codigo" class="codigo-form columna c-6 center"  method="post">
 					<input name="codigo" class="full" type="text" >
 					<label class="text-center full block" for="codigo">Código de Barras</label>
 				</form>
@@ -37,8 +43,22 @@
 		<footer>
 
 		</footer>
-
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script>
+			$(document).ready(function(){
+				 $('form input').keypress(function (e) {
+				   	if (e.which == 13) {
+				   		var cb = $('input').val();
+				     	window.location.replace("check.php?cb="+cb);
+				     	return false;    	
+					}
+				});
+			})
+		</script>
 	</body>
-
 </html>
-
+<?php
+	}	
+	else
+		header('Location: index.php');
+?>

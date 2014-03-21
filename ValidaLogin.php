@@ -16,7 +16,7 @@
 		$_SESSION['usuario'] = $usuario;
 		header('Location: general.php?id='. session_id()) ;	
 	} else {
-		header('Location: index.php?1');
+		header('Location: index.php');
 	}
 
 ?>
