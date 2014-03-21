@@ -1,3 +1,7 @@
+<?php 
+	session_start();
+	if(isset($_SESSION['usuario'])){
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -156,4 +160,9 @@
 	</body>
 
 </html>
+<?php
+	}	
+	else
+		//header('Location: index.php');
+?>
 

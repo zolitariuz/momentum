@@ -1,5 +1,7 @@
 <?php 
-	echo $_SESSION['usuario'];
+	$id = $_POST['id'];
+	session_start($id);
+
 	if(isset($_SESSION['usuario'])){
 ?>
 <!doctype html>
@@ -29,10 +31,9 @@
 
 			<div class="main width">
 
-				<form class="codigo-form columna c-6 center" action="check.php" method="post">
+				<form name="codigo" class="codigo-form columna c-6 center"  method="post">
 					<input name="codigo" class="full" type="text" >
 					<label class="text-center full block" for="codigo">Código de Barras</label>
-					<button type="submit" class="hide"></submit>
 				</form>
 
 			</div><!-- main -->
@@ -47,8 +48,9 @@
 			$(document).ready(function(){
 				 $('form input').keypress(function (e) {
 				   	if (e.which == 13) {
-				     	alert(1);
-				     	return false;
+				   		var cb = $('input').val();
+				     	window.location.replace("check.php?cb="+cb);
+				     	return false;    	
 					}
 				});
 			})
