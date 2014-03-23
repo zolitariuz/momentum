@@ -26,6 +26,12 @@
 
 				<div class="width clearfix">
 
+					<a class="logout columna c-1 right" href="#">
+						Logout
+					</a>
+
+					<div class="clear"></div>
+
 					<a class="span c-1" href="general.php">
 						<img src="images/logo-momentum.png" alt="">
 					</a>
@@ -47,7 +53,7 @@
 							<li class="columna c-2">
 								<a href="saldo.php">Saldo</a>
 							</li>
-							<li class="columna c-2">
+							<li class="activo columna c-2">
 								<a href="movimientos.php">Movimientos</a>
 							</li>
 						</ul>

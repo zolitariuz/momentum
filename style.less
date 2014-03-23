@@ -146,7 +146,7 @@ figure {margin: 0;}
 
 //elementos
 p{ margin-bottom: 1em; }
-.boton{ margin-bottom: 10px; padding: 10px; border: none; .border-radius; color: @claro; background: @highlight; text-align: center; text-transform: lowercase; text-decoration: none; .transition; cursor: pointer; }
+.boton{ margin-bottom: 10px; padding: 10px; border: none; .border-radius; color: @claro; background: @highlight; text-align: center; text-decoration: none; .transition; cursor: pointer; }
 
 
 //caracteristicas
@@ -170,11 +170,16 @@ header{ margin-top: @margen; margin-bottom: @margen;
 
 }
 
+.logout{ color: @highlight; text-decoration: none; .helvetica(12px, 12px); font-weight: bold; }
+
 nav{ margin-top: 2% !important;
 	ul{ margin: 0; padding: (@margen/2) 0 (@margen/2) 0; list-style: none;
 		li{ padding-bottom: (@margen/4); border-bottom: 2px solid @highlight; text-align: center;
 			a{ color: @highlight; text-decoration: none; .helvetica(18px, 18px); font-weight: bold; .transition;
 				&:hover{ color: lighten(@highlight, 10%); border-color: lighten(@highlight, 10%); }
+			}
+			&.activo{ background: @highlight; padding-top: (@margen/5); padding-bottom: 0;
+				a{ color: @claro; font-weight: 300; cursor: default; }
 			}
 		}
 	}
