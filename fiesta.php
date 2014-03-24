@@ -69,17 +69,17 @@
 
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre:</strong></li>
-						<li class="columna c-2"><strong>No. de cuarto:</strong></li>
-						<li class="saldo columna c-2">Saldo: $680</li>
+						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
+						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
+						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00</li>
 
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>País:</strong></li>
+						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
 						<li class="columna c-4"><strong>RP:</strong></li>
-						<li class="columna c-4"><strong>Tipo de usuario:</strong></li>
+						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
 
 					</ul><!-- info-usuario -->
 
