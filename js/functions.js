@@ -216,6 +216,26 @@
 				}
 			});
 		});
+
+		// agregar saldo
+		$('.saldo-form input[type="submit"]').click(function(e){
+			e.preventDefault();
+			var saldo = $('.saldo-form input[type="text"]').val();
+			var url = "AgregaSaldo.php?saldo=" + saldo;
+			$.ajax({    //create an ajax request to load_page.php					
+				url: url,
+				type: "GET",
+				data:$(this).serialize(),
+				dataType:"json",
+				success: function (data) {
+					if(data.agregado == '1'){
+						$('.saldo').text("Saldo: $"+data.saldo+".00 US");	
+						alert("Se agregaron $" + saldo + ".00 US correctamente.");
+						$('.saldo-form input[type="text"]').val("");
+					} 
+				}
+			});
+		});
 	});
 })(jQuery);
 
