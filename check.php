@@ -1,7 +1,11 @@
 <?php 
 	session_start();
 
-	$cb = $_GET['cb']; 
+	if(isset($_SESSION['id']))
+		$cb = $_SESSION['id']; 
+	else
+		$cb = $_GET['cb']; 
+
 	// ¿existe sesión activa y usuario válido?
 	$deco = existeCodBar($cb);
 	if(isset($_SESSION['usuario']) && $deco) {
@@ -182,7 +186,6 @@
 				var galaCheckIn = '<?php Print($ci_gala); ?>';
 				var nocheCheckIn = '<?php Print($ci_noche_mex); ?>';
 				var y2bCheckIn = '<?php Print($ci_y2b); ?>';
-				alert(1);
 				if(hotelCheckIn==0) {
 					mostrarCheckInHotel();
 					esconderEventos();

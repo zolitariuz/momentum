@@ -1,3 +1,27 @@
+<?php 
+	session_start();
+
+	$cb = $_SESSION['id']; 
+
+	// ¿existe sesión activa y usuario válido?
+	$deco = existeCodBar($cb);
+	if(isset($_SESSION['usuario']) && $deco) {
+		// Guarda codigo de barras en la sesión
+		$_SESSION['id'] = $deco['id'];
+		// Datos usuario
+		$nombre =  $deco['nombre'];
+		$apellidos = $deco['apellido'];
+		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
+		$pais = $deco['pais'];
+		// Saldo
+		$saldo = $deco['saldo'];
+		// Check-in info
+		$cuarto = $deco['cuarto'];
+		$ci_hotel = $deco['ci_hotel'];
+		$ci_gala = $deco['ci_gala'];
+		$ci_noche_mex = $deco['ci_noche_mex'];
+		$ci_y2b = $deco['ci_y2b'];
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -107,7 +131,54 @@
 
 		</footer>
 
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/functions.js"></script>
+		<script>
+			$(document).ready(function(){
+				var saldo = '<?php Print($saldo); ?>';
+				if(parseInt(saldo) > 30){
+					
+					if(parseInt(saldo) > 60){
+
+					}
+				}
+			});
+		</script>
+
 	</body>
 
 </html>
+<?php
+	} else if(isset($_SESSION['usuario']))
+		header('Location: general.php');
+	else 
+		header('Location: index.php');
+
+	// FUNCIONES
+	function existeCodBar($cb) {
+		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
+		if (mysqli_connect_errno()){
+		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
+		} 
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id  WHERE U.F_Id = '".$cb."'";
+
+		$aUsuario=mysqli_query($con, $qUsuario);
+		
+		if($rUsuario = mysqli_fetch_array($aUsuario)) {
+			$datosUsuario = array(
+				"id"=>$rUsuario['F_Id'],
+				"nombre"=>$rUsuario['F_Nombre'],
+				"apellido"=>$rUsuario['F_Apellidos'],
+				"pais"=>$rUsuario['F_Pais'],
+				"tipo"=>$rUsuario['F_Tipo'],
+				"saldo"=>$rUsuario['F_Saldo'], 
+			);
+			return $datosUsuario;
+		} else {
+			return 0;
+		}
+	}
+?>
+
+
 
