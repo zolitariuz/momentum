@@ -25,6 +25,25 @@
 			return result;
 		}
 
+		// Log out
+		// agregar saldo
+		$('.logout').click(function(e){
+			e.preventDefault();
+			var url = "Logout.php";
+			$.ajax({    //create an ajax request to load_page.php					
+				url: url,
+				type: "POST",
+				data:$(this).serialize(),
+				dataType:"json",
+				success: function (data) {
+					if(data.logout){
+						alert(1);
+						window.location = "index.php";
+					}
+				} 
+			});
+		});
+
 		// check-in/check-out hotel
 		$('.hotel .check.in').click(function(){
 			var url = "CheckInHotel.php";

@@ -136,6 +136,7 @@
 		<script>
 			$(document).ready(function(){
 				var saldo = '<?php Print($saldo); ?>';
+				alert(saldo);
 				if(parseInt(saldo) > 30){
 					
 					if(parseInt(saldo) > 60){

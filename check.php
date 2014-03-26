@@ -52,6 +52,12 @@
 			<header>
 
 				<div class="width clearfix">
+					
+					<a class="logout columna c-1 right" href="#">
+						Logout
+					</a>
+
+					<div class="clear"></div>
 
 					<a class="span c-1" href="general.php">
 						<img src="images/logo-momentum.png" alt="">
