@@ -169,14 +169,14 @@
 
 					<div class="columnas">
 
-						<div class="columna c-6">
+						<div class="columna c-6 desayuno">
 
 							<h3>Desayunos</h3>
 
 							<div class="span c-4">&nbsp;</div>
 
 							<div class="cantidad columna c-3">
-								3
+								<?php echo $desayunos; ?>
 							</div>
 
 							<div class="restar columna c-1">
@@ -185,14 +185,14 @@
 
 						</div><!-- columna c-3 -->
 
-						<div class="columna c-6">
+						<div class="columna c-6 comida">
 
 							<h3>Comidas</h3>
 
 							<div class="span c-4">&nbsp;</div>
 
 							<div class="cantidad columna c-3">
-								4
+								<?php echo $comidas; ?>
 							</div>
 
 							<div class="restar columna c-1">

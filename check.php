@@ -54,7 +54,7 @@
 					</a>
 					<nav class="columna c-11" >
 						<ul class="clearfix">
-							<li class="columna c-2">
+							<li class="activo columna c-2">
 								<a href="check.php">Check-in/out</a>
 							</li>
 							<li class="columna c-2">
@@ -182,6 +182,7 @@
 				var galaCheckIn = '<?php Print($ci_gala); ?>';
 				var nocheCheckIn = '<?php Print($ci_noche_mex); ?>';
 				var y2bCheckIn = '<?php Print($ci_y2b); ?>';
+				alert(1);
 				if(hotelCheckIn==0) {
 					mostrarCheckInHotel();
 					esconderEventos();
