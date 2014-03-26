@@ -1,3 +1,27 @@
+<?php 
+	session_start();
+
+	$cb = $_SESSION['id']; 
+
+	// ¿existe sesión activa y usuario válido?
+	$deco = existeCodBar($cb);
+	if(isset($_SESSION['usuario']) && $deco) {
+		// Guarda codigo de barras en la sesión
+		$_SESSION['id'] = $deco['id'];
+		// Datos usuario
+		$nombre =  $deco['nombre'];
+		$apellidos = $deco['apellido'];
+		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
+		$pais = $deco['pais'];
+		// Saldo
+		$saldo = $deco['saldo'];
+		// Check-in info
+		$cuarto = $deco['cuarto'];
+		$ci_hotel = $deco['ci_hotel'];
+		$ci_gala = $deco['ci_gala'];
+		$ci_noche_mex = $deco['ci_noche_mex'];
+		$ci_y2b = $deco['ci_y2b'];
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -45,7 +69,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -69,17 +93,17 @@
 
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
-						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
-						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00</li>
+						<li class="columna c-4"><strong>Nombre: </strong><?php echo $nombre." ".$apellidos; ?></li>
+						<li class="columna c-4"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
+						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00</li>
 
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
+						<li class="columna c-4"><strong>País: </strong><?php echo $pais; ?></strong></li>
 						<li class="columna c-4"><strong>RP:</strong></li>
-						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
+						<li class="columna c-4"><strong>Tipo de usuario: </strong><?php echo $tipo; ?></li>
 
 					</ul><!-- info-usuario -->
 
@@ -90,110 +114,19 @@
 				<div class="info-usuario">
 
 					<ul class="clearfix">
-
+						<li class="columna c-2"><h3>#</h3></li>
 						<li class="columna c-2"><h3>Tipo</h3></li>
 						<li class="columna c-2"><h3>Cantidad</h3></li>
 						<li class="columna c-2"><h3>Fecha</h3></li>
-						<li class="span c-2">&nbsp;</li>
-						<li class="columna c-4"><h3>Descripcción</h3></li>
+						<li class="span c-1">&nbsp;</li>
+						<li class="columna c-3"><h3>Descripcción</h3></li>
 
 					</ul><!-- info-usuario -->
 
 					<div class="movimientos">
 
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
-
-						<ul class="clearfix">
-
-							<li class="columna c-2">Alimentos</li>
-							<li class="columna c-2">1</li>
-							<li class="columna c-2">13:45 04/04/2014</li>
-							<li class="span c-2">&nbsp;</li>
-							<li class="columna c-4">Comida</li>
-
-						</ul><!-- info-usuario -->
 
 					</div><!-- movimientos -->
-
-
 
 				</div><!-- info-usuario -->
 
@@ -205,7 +138,58 @@
 
 		</footer>
 
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/functions.js"></script>
+		<script>
+			$(document).ready(function(e) {
+	            $.ajax({    //create an ajax request to load_page.php
+					type: "GET",
+					url: "MuestraMovimientos.php",
+					dataType: "html",   //expect html to be returned
+					success: function(response){
+					$(".movimientos").html(response);
+					//alert(response);
+					}
+				});
+	        });
+		</script>
+		
 	</body>
 
 </html>
+<?php
+	} else if(isset($_SESSION['usuario']))
+		header('Location: general.php');
+	else 
+		header('Location: index.php');
+
+	// FUNCIONES
+	function existeCodBar($cb) {
+		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
+		if (mysqli_connect_errno()){
+		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
+		} 
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id INNER JOIN T_CheckIn CI ON CI.F_Id = U.F_Id WHERE U.F_Id = '".$cb."'";
+
+		$aUsuario=mysqli_query($con, $qUsuario);
+		
+		if($rUsuario = mysqli_fetch_array($aUsuario)) {
+			$datosUsuario = array(
+				"id"=>$rUsuario['F_Id'],
+				"nombre"=>$rUsuario['F_Nombre'],
+				"apellido"=>$rUsuario['F_Apellidos'],
+				"pais"=>$rUsuario['F_Pais'],
+				"tipo"=>$rUsuario['F_Tipo'],
+				"saldo"=>$rUsuario['F_Saldo'], 
+				"cuarto"=>$rUsuario['F_Cuarto']
+			);
+			return $datosUsuario;
+		} else {
+			return 0;
+		}
+	}
+?>
+
+
+
 

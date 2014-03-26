@@ -41,12 +41,12 @@
 			<header>
 
 				<div class="width clearfix">
-<div class="clear"></div>
+					
 					<a class="logout columna c-1 right" href="#">
 						Logout
 					</a>
 
-					
+					<div class="clear"></div>
 
 					<a class="span c-1" href="general.php">
 						<img src="images/logo-momentum.png" alt="">
@@ -61,7 +61,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -121,7 +121,6 @@
 			$(document).ready(function(){
 				var tipo = '<?php Print($tipo); ?>';
 				var saldo = '<?php Print($saldo); ?>';
-
 			});
 		</script>
 

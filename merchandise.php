@@ -1,3 +1,23 @@
+<?php 
+	session_start();
+
+	$cb = $_SESSION['id']; 
+
+	// ¿existe sesión activa y usuario válido?
+	$deco = existeCodBar($cb);
+	if(isset($_SESSION['usuario']) && $deco) {
+		// Guarda codigo de barras en la sesión
+		$_SESSION['id'] = $deco['id'];
+		// Datos usuario
+		$nombre =  $deco['nombre'];
+		$apellidos = $deco['apellido'];
+		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
+		$pais = $deco['pais'];
+		// Saldo
+		$saldo = $deco['saldo'];
+		// Check-in info
+		$cuarto = $deco['cuarto'];
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -45,7 +65,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="activo columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -69,17 +89,17 @@
 
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
-						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
-						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00</li>
+						<li class="columna c-4"><strong>Nombre: </strong><?php echo $nombre." ".$apellidos; ?></li>
+						<li class="columna c-4"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
+						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00</li>
 
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
+						<li class="columna c-4"><strong>País: </strong><?php echo $pais; ?></li>
 						<li class="columna c-4"><strong>RP:</strong></li>
-						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
+						<li class="columna c-4"><strong>Tipo de usuario: </strong><?php echo $tipo; ?></li>
 
 					</ul><!-- info-usuario -->
 
@@ -89,19 +109,19 @@
 
 				<div class="columna c-4">
 
-					<div class="merch boton">Sombrero $130</div>
+					<div class="merch boton sombrero">Sombrero $10 US</div>
 
 				</div><!-- columna c-4 -->
 
 				<div class="columna c-4">
 
-					<div class="merch boton">Guayabera $2000</div>
+					<div class="merch boton guayabera">Guayabera $200 US</div>
 
 				</div><!-- columna c-4 -->
 
 				<div class="columna c-4">
 
-					<div class="merch boton">Playera $130</div>
+					<div class="merch boton playera">Playera $10 US</div>
 
 				</div><!-- columna c-4 -->
 
@@ -111,35 +131,41 @@
 
 				<div class="columna c-4">
 
-					<div class="merch boton">Thermo $325</div>
+					<div class="merch boton thermo">Thermo $25 US</div>
 
 				</div><!-- columna c-2 -->
 
 				<div class="columna c-4">
 
-					<div class="merch boton">Mochila $390</div>
+					<div class="merch boton mochila">Mochila $30 US</div>
 
 				</div><!-- columna c-2 -->
 
 				<div class="clear"></div>
 
-				<div class="columna c-4">
+				<div class="columna c-4 comodin-1">
 
-					<div class="merch boton">$1</div>
-
-				</div><!-- columna c-2 -->
-
-				<div class="columna c-4">
-
-					<div class="merch boton">$2</div>
+					<div class="merch boton">$1 US</div>
 
 				</div><!-- columna c-2 -->
 
-				<div class="columna c-4">
+				<div class="columna c-4 comodin-2">
 
-					<div class="merch boton">$5</div>
+					<div class="merch boton">$2 US</div>
 
 				</div><!-- columna c-2 -->
+
+				<div class="columna c-4 comodin-5">
+
+					<div class="merch boton">$5 US</div>
+
+				</div><!-- columna c-2 -->
+
+				<div class="columna c-6 insuficiente hide">
+
+					<div class="">Saldo insuficiente para comprar merchandising, <a href="saldo.php">¿deseas agregar más dinero?</a></div>
+
+				</div><!-- columna c-6 -->
 
 			</div><!-- main -->
 
@@ -149,7 +175,49 @@
 
 		</footer>
 
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/functions.js"></script>
+		<script>
+			$(document).ready(function(){
+				var saldo = '<?php Print($saldo); ?>';
+				escondeMerch();
+				muestraMerchDisponible(saldo);
+			});
+		</script>
+
 	</body>
 
 </html>
+<?php
+	} else if(isset($_SESSION['usuario']))
+		header('Location: general.php');
+	else 
+		header('Location: index.php');
+
+	// FUNCIONES
+	function existeCodBar($cb) {
+		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
+		if (mysqli_connect_errno()){
+		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
+		} 
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id INNER JOIN T_CheckIn CI ON CI.F_Id = U.F_Id WHERE U.F_Id = '".$cb."'";
+
+		$aUsuario=mysqli_query($con, $qUsuario);
+		
+		if($rUsuario = mysqli_fetch_array($aUsuario)) {
+			$datosUsuario = array(
+				"id"=>$rUsuario['F_Id'],
+				"nombre"=>$rUsuario['F_Nombre'],
+				"apellido"=>$rUsuario['F_Apellidos'],
+				"pais"=>$rUsuario['F_Pais'],
+				"tipo"=>$rUsuario['F_Tipo'],
+				"saldo"=>$rUsuario['F_Saldo'], 
+				"cuarto"=>$rUsuario['F_Cuarto']
+			);
+			return $datosUsuario;
+		} else {
+			return 0;
+		}
+	}
+?>
 

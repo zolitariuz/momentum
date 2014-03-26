@@ -69,7 +69,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="activo columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -93,33 +93,40 @@
 
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
-						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
-						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00</li>
+						<li class="columna c-4"><strong>Nombre: </strong><?php echo $nombre." ".$apellidos; ?></li>
+						<li class="columna c-4"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
+						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00 US</li>
 
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
+						<li class="columna c-4"><strong>País: </strong><?php echo $pais; ?></li>
 						<li class="columna c-4"><strong>RP:</strong></li>
-						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
+						<li class="columna c-4"><strong>Tipo de usuario: </strong><?php echo $tipo; ?></li>
 
 					</ul><!-- info-usuario -->
 
 				</div><!-- info-usuario -->
 
-				<h2>Fiestas</h2>
+				<h2>Drinks</h2>
 
-				<div class="columna c-6">
+				<div class="columna c-6 cerveza hide">
 
-					<div class="merch boton">Cerveza $30</div>
+					<div class="merch boton">Cerveza $4</div>
 
 				</div><!-- columna c-6 -->
 
-				<div class="columna c-6">
+				<div class="columna c-6 liquor hide">
 
-					<div class="merch boton">Hard liquor $60</div>
+					<div class="merch boton">Hard liquor $6</div>
+
+				</div><!-- columna c-6 -->
+
+
+				<div class="columna c-6 insuficiente hide">
+
+					<div class="">Saldo insuficiente para comprar bebidas, <a href="saldo.php">¿deseas agregar más dinero?</a></div>
 
 				</div><!-- columna c-6 -->
 
@@ -136,13 +143,7 @@
 		<script>
 			$(document).ready(function(){
 				var saldo = '<?php Print($saldo); ?>';
-				alert(saldo);
-				if(parseInt(saldo) > 30){
-					
-					if(parseInt(saldo) > 60){
-
-					}
-				}
+				muestraDrinksDisponibles(saldo);
 			});
 		</script>
 
@@ -161,7 +162,7 @@
 		if (mysqli_connect_errno()){
 		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
 		} 
-		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id  WHERE U.F_Id = '".$cb."'";
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id INNER JOIN T_CheckIn CI ON CI.F_Id = U.F_Id WHERE U.F_Id = '".$cb."'";
 
 		$aUsuario=mysqli_query($con, $qUsuario);
 		
@@ -173,6 +174,7 @@
 				"pais"=>$rUsuario['F_Pais'],
 				"tipo"=>$rUsuario['F_Tipo'],
 				"saldo"=>$rUsuario['F_Saldo'], 
+				"cuarto"=>$rUsuario['F_Cuarto']
 			);
 			return $datosUsuario;
 		} else {

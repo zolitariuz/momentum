@@ -71,7 +71,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -90,19 +90,19 @@
 			</header>
 
 			<div class="main width">
-				<div class="clearfix"></div>
-				<div class="info-usuario">
 
+				<div class="info-usuario">
+		
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
-						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
-						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00</li>
+						<li class="columna c-4"><strong>Nombre: </strong><?php echo $nombre." ".$apellidos; ?></li>
+						<li class="columna c-4"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
+						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00 US</li>
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
+						<li class="columna c-4"><strong>País: </strong><?php echo $pais; ?></li>
 						<li class="columna c-4"><strong>RP:</strong></li>
 						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
 

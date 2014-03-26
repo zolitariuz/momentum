@@ -17,6 +17,7 @@
 		$desayunos = $deco['desayunos'];
 		$comidas = $deco['comidas'];
 		$cenas = $deco['cenas'];
+		$cuarto = $deco['cuarto'];
 ?>
 <!doctype html>
 	<head>
@@ -65,7 +66,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -89,9 +90,9 @@
 
 					<ul class="clearfix">
 
-						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
-						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
-						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00</li>
+						<li class="columna c-4"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
+						<li class="columna c-4"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
+						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00 US</li>
 
 					</ul><!-- info-usuario -->
 
@@ -249,7 +250,7 @@
 		if (mysqli_connect_errno()){
 		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
 		} 
-		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id  WHERE U.F_Id = '".$cb."'";
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id INNER JOIN T_CheckIn CI ON CI.F_Id = U.F_Id WHERE U.F_Id = '".$cb."'";
 
 		$aUsuario=mysqli_query($con, $qUsuario);
 		
@@ -263,7 +264,8 @@
 				"saldo"=>$rUsuario['F_Saldo'], 
 				"desayunos"=>$rUsuario['F_Desayunos'],
 				"comidas"=>$rUsuario['F_Comidas'],
-				"cenas"=>$rUsuario['F_Cenas']
+				"cenas"=>$rUsuario['F_Cenas'], 
+				"cuarto"=>$rUsuario['F_Cuarto']
 			);
 			return $datosUsuario;
 		} else {
