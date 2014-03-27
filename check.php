@@ -1,29 +1,29 @@
 <?php
-	// session_start();
+	session_start();
 
-	// if(isset($_SESSION['id']) && $_GET['cb'] == '')
-	// 	$cb = $_SESSION['id'];
-	// else
-	// 	$cb = $_GET['cb'];
+	if(isset($_SESSION['id']) && $_GET['cb'] == '')
+		$cb = $_SESSION['id'];
+	else
+		$cb = $_GET['cb'];
 
-	// // ¿existe sesión activa y usuario válido?
-	// $deco = existeCodBar($cb);
-	// if(isset($_SESSION['usuario']) && $deco) {
-	// 	// Guarda codigo de barras en la sesión
-	// 	$_SESSION['id'] = $deco['id'];
-	// 	// Datos usuario
-	// 	$nombre =  $deco['nombre'];
-	// 	$apellidos = $deco['apellido'];
-	// 	($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
-	// 	$pais = $deco['pais'];
-	// 	// Saldo
-	// 	$saldo = $deco['saldo'];
-	// 	// Check-in info
-	// 	$cuarto = $deco['cuarto'];
-	// 	$ci_hotel = $deco['ci_hotel'];
-	// 	$ci_gala = $deco['ci_gala'];
-	// 	$ci_noche_mex = $deco['ci_noche_mex'];
-	// 	$ci_y2b = $deco['ci_y2b'];
+	// ¿existe sesión activa y usuario válido?
+	$deco = existeCodBar($cb);
+	if(isset($_SESSION['usuario']) && $deco) {
+		// Guarda codigo de barras en la sesión
+		$_SESSION['id'] = $deco['id'];
+		// Datos usuario
+		$nombre =  $deco['nombre'];
+		$apellidos = $deco['apellido'];
+		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
+		$pais = $deco['pais'];
+		// Saldo
+		$saldo = $deco['saldo'];
+		// Check-in info
+		$cuarto = $deco['cuarto'];
+		$ci_hotel = $deco['ci_hotel'];
+		$ci_gala = $deco['ci_gala'];
+		$ci_noche_mex = $deco['ci_noche_mex'];
+		$ci_y2b = $deco['ci_y2b'];
 ?>
 <!doctype html>
 	<head>
@@ -240,38 +240,38 @@
 	</body>
 	</html>
 <?php
-	// } else if(isset($_SESSION['usuario']))
-	// 	header('Location: general.php');
-	// else
-	// 	header('Location: index.php');
+	} else if(isset($_SESSION['usuario']))
+		header('Location: general.php');
+	else
+		header('Location: index.php');
 
-	// // FUNCIONES
-	// function existeCodBar($cb) {
-	// 	$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
-	// 	if (mysqli_connect_errno()){
-	// 	  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
-	// 	}
-	// 	$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id INNER JOIN T_CheckIn CI ON CI.F_Id = U.F_Id WHERE U.F_Id = '".$cb."'";
+	// FUNCIONES
+	function existeCodBar($cb) {
+		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
+		if (mysqli_connect_errno()){
+		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
+		}
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id INNER JOIN T_CheckIn CI ON CI.F_Id = U.F_Id WHERE U.F_Id = '".$cb."'";
 
-	// 	$aUsuario=mysqli_query($con, $qUsuario);
+		$aUsuario=mysqli_query($con, $qUsuario);
 
-	// 	if($rUsuario = mysqli_fetch_array($aUsuario)) {
-	// 		$datosUsuario = array(
-	// 			"id"=>$rUsuario['F_Id'],
-	// 			"nombre"=>$rUsuario['F_Nombre'],
-	// 			"apellido"=>$rUsuario['F_Apellidos'],
-	// 			"pais"=>$rUsuario['F_Pais'],
-	// 			"tipo"=>$rUsuario['F_Tipo'],
-	// 			"saldo"=>$rUsuario['F_Saldo'],
-	// 			"cuarto"=>$rUsuario['F_Cuarto'],
-	// 			"ci_hotel"=>$rUsuario['F_Hotel'],
-	// 			"ci_gala"=>$rUsuario['F_CenaGala'],
-	// 			"ci_noche_mex"=>$rUsuario['F_NocheMex'],
-	// 			"ci_y2b"=>$rUsuario['F_Y2B']
-	// 		);
-	// 		return $datosUsuario;
-	// 	} else {
-	// 		return 0;
-	// 	}
-	// }
+		if($rUsuario = mysqli_fetch_array($aUsuario)) {
+			$datosUsuario = array(
+				"id"=>$rUsuario['F_Id'],
+				"nombre"=>$rUsuario['F_Nombre'],
+				"apellido"=>$rUsuario['F_Apellidos'],
+				"pais"=>$rUsuario['F_Pais'],
+				"tipo"=>$rUsuario['F_Tipo'],
+				"saldo"=>$rUsuario['F_Saldo'],
+				"cuarto"=>$rUsuario['F_Cuarto'],
+				"ci_hotel"=>$rUsuario['F_Hotel'],
+				"ci_gala"=>$rUsuario['F_CenaGala'],
+				"ci_noche_mex"=>$rUsuario['F_NocheMex'],
+				"ci_y2b"=>$rUsuario['F_Y2B']
+			);
+			return $datosUsuario;
+		} else {
+			return 0;
+		}
+	}
 ?>
