@@ -1,4 +1,4 @@
-<?php 
+<?php
 	session_start();
 	$cb = $_GET['cb'];
 
@@ -79,7 +79,7 @@
 
 						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
 						<li class="columna c-2"><strong>No. de cuarto:</strong></li>
-						
+
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
@@ -170,7 +170,7 @@
 
 </html>
 <?php
-	}	
+	}
 	else
 		header('Location: general.php');
 
@@ -178,10 +178,10 @@
 		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
 		if (mysqli_connect_errno()){
 		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
-		} 
+		}
 		$qUsuario="SELECT * FROM T_Usuario WHERE F_Id = '".$cb."'";
 		$aUsuario=mysqli_query($con, $qUsuario);
-		
+
 		if($rUsuario = mysqli_fetch_array($aUsuario)) {
 			$datosUsuario = array(
 				"nombre"=>$rUsuario['F_Nombre'],
