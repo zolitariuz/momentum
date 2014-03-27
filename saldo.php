@@ -1,3 +1,19 @@
+<?php
+	session_start();
+
+	$cb = $_SESSION['id'];
+
+	// ¿existe sesión activa y usuario válido?
+	$deco = existeCodBar($cb);
+	if(isset($_SESSION['usuario']) && $deco) {
+		// Datos usuario
+		$nombre =  $deco['nombre'];
+		$apellidos = $deco['apellido'];
+		($deco['tipo']=='AIE') ? $tipo = 'AIESEC' : $tipo = 'Alumni';
+		$pais = $deco['pais'];
+		// Saldo
+		$saldo = $deco['saldo'];
+?>
 <!doctype html>
 	<head>
 		<meta charset="utf-8">
@@ -30,6 +46,10 @@
 						Logout
 					</a>
 
+					<a class="escanear-cb columna c-2 right" href="general.php">
+						Escanear código de barras
+					</a>
+
 					<div class="clear"></div>
 
 					<a class="span c-1" href="general.php">
@@ -45,7 +65,7 @@
 								<a href="alimentos.php">Alimentos</a>
 							</li>
 							<li class="columna c-2">
-								<a href="fiesta.php">Fiesta</a>
+								<a href="fiesta.php">Drinks</a>
 							</li>
 							<li class="columna c-2">
 								<a href="merchandise.php">Merchandise</a>
@@ -69,23 +89,23 @@
 
 					<ul class="clearfix">
 
-						<li class="columna c-4"><strong>Nombre:</strong></li>
-						<li class="columna c-4"><strong>No. de cuarto:</strong></li>
-						<li class="saldo columna c-4">Saldo: $680</li>
+						<li class="columna c-8"><strong>Nombre: <?php echo $nombre." ".$apellidos; ?></strong></li>
+						<li class="columna c-2"><strong>No. de cuarto: <?php echo $cuarto; ?></strong></li>
+						<li class="saldo columna c-2">Saldo: $<?php echo $saldo; ?>.00 US</li>
 
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
 
-						<li class="columna c-2"><strong>País:</strong></li>
-						<li class="columna c-2"><strong>RP:</strong></li>
-						<li class="columna c-2"><strong>Tipo de usuario:</strong></li>
+						<li class="columna c-4"><strong>País: <?php echo $pais; ?></strong></li>
+						<li class="columna c-4"><strong>RP:</strong></li>
+						<li class="columna c-4"><strong>Tipo de usuario: <?php echo $tipo; ?></strong></li>
 
 					</ul><!-- info-usuario -->
 
 				</div><!-- info-usuario -->
 
-				<h2>Agregar salgo</h2>
+				<h2>Agregar saldo</h2>
 
 				<form class="saldo-form columna c-6 center" action="">
 					<input class="full" type="text">
@@ -99,8 +119,47 @@
 		<footer>
 
 		</footer>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		<script src="js/functions.js"></script>
+		<script>
+			$(document).ready(function(){
+				var tipo = '<?php Print($tipo); ?>';
+				var saldo = '<?php Print($saldo); ?>';
+			});
+		</script>
 
 	</body>
 
 </html>
+<?php
+	} else if(isset($_SESSION['usuario']))
+		header('Location: general.php');
+	else
+		header('Location: index.php');
+
+	// FUNCIONES
+	function existeCodBar($cb) {
+		$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
+		if (mysqli_connect_errno()){
+		  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
+		}
+		$qUsuario="SELECT * FROM T_Usuario U INNER JOIN T_Saldo S ON S.F_Id = U.F_Id  WHERE U.F_Id = '".$cb."'";
+
+		$aUsuario=mysqli_query($con, $qUsuario);
+
+		if($rUsuario = mysqli_fetch_array($aUsuario)) {
+			$datosUsuario = array(
+				"id"=>$rUsuario['F_Id'],
+				"nombre"=>$rUsuario['F_Nombre'],
+				"apellido"=>$rUsuario['F_Apellidos'],
+				"pais"=>$rUsuario['F_Pais'],
+				"tipo"=>$rUsuario['F_Tipo'],
+				"saldo"=>$rUsuario['F_Saldo'],
+			);
+			return $datosUsuario;
+		} else {
+			return 0;
+		}
+	}
+?>
 

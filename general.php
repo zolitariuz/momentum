@@ -1,6 +1,5 @@
 <?php 
-	$id = $_POST['id'];
-	session_start($id);
+	session_start();
 
 	if(isset($_SESSION['usuario'])){
 ?>
