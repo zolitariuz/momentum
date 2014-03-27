@@ -30,7 +30,7 @@
 		$('.logout').click(function(e){
 			e.preventDefault();
 			var url = "Logout.php";
-			$.ajax({    //create an ajax request to load_page.php					
+			$.ajax({    //create an ajax request to load_page.php
 				url: url,
 				type: "POST",
 				data:$(this).serialize(),
@@ -38,16 +38,22 @@
 				success: function (data) {
 					if(data.logout)
 						window.location = "index.php";
-				} 
+				}
 			});
 		});
 
 		// check-in/check-out hotel
-		$('.hotel .check.in i').click(function(){
+		$('.hotel .check.in').click(function(){
 			var cuarto = $("input.cuarto").val();
-			if(confirm("¿Estás seguro que deseas hacer check-in en el hotel, # de cuarto " + cuarto + "?")){
+
+			if ( ! cuarto ){
+				alert('El número de cuarto está vacio');
+				return false;
+			}
+
+			if( confirm("¿Estás seguro que deseas hacer check-in en el hotel, # de cuarto " + cuarto + "?")){
 				var url = "CheckInHotel.php?cuarto="+cuarto;
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -56,17 +62,18 @@
 						if(data.hotel == "1"){
 							mostrarCheckOutHotel();
 							mostrarCheckInEventos();
-							mostrarCuarto(cuarto);	
+							mostrarCuarto(cuarto);
 						}
 					}
 
 	    		});
 	    	}
 		});
+
 		$('.hotel .check.out').click(function(){
 			if(confirm("¿Estás seguro que deseas hacer check-out en el hotel?")){
 				var url = "CheckOutHotel.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -74,35 +81,35 @@
 					success: function (data) {
 						if(data.hotel == "-1"){
 							esconderHotel();
-							esconderEventos();	
+							esconderEventos();
 						}
 					}
 	    		});
-	    	}	
+	    	}
 		});
 
 		// check-in/check-out gala
 		$('.gala .check.in').click(function(){
 			if(confirm("¿Estás seguro que deseas hacer check-in en la cena de gala?")){	var url = "CheckInGala.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						if(data.hotel == "1"){
-							mostrarCheckOutGala();	
+							mostrarCheckOutGala();
 							esconderCheckInGala();
-						}	
+						}
 					}
 
 	    		});
-	    	}	
+	    	}
 		});
 		$('.gala .check.out').click(function(){
-			if(confirm("¿Estás seguro que deseas hacer check-out en la cena de gala?")){	
+			if(confirm("¿Estás seguro que deseas hacer check-out en la cena de gala?")){
 				var url = "CheckOutGala.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -114,32 +121,32 @@
 					}
 
 	    		});
-	    	}	
+	    	}
 		});
 
 		// check-in/check-out noche mexicana
 		$('.noche_mex .check.in').click(function(){
 			if(confirm("¿Estás seguro que deseas hacer check-in en la noche mexicana")){
 				var url = "CheckInNocheMex.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						if(data.hotel == "1"){
-							mostrarCheckOutNocheMex();	
+							mostrarCheckOutNocheMex();
 							esconderCheckInNocheMex();
 						}
 					}
 
     			});
-    		}	
+    		}
 		});
 		$('.noche_mex .check.out').click(function(){
-			if(confirm("¿Estás seguro que deseas hacer check-out en la noche mexicana?")){	
+			if(confirm("¿Estás seguro que deseas hacer check-out en la noche mexicana?")){
 				var url = "CheckOutNocheMex.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -151,14 +158,14 @@
 					}
 
 	    		});
-	    	}	
+	    	}
 		});
 
 		// check-in/check-out noche mexicana
 		$('.y2b .check.in').click(function(){
-			if(confirm("¿Estás seguro que deseas hacer check-in en Y2B?")){	
+			if(confirm("¿Estás seguro que deseas hacer check-in en Y2B?")){
 				var url = "CheckInY2B.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -174,9 +181,9 @@
 	        }
 		});
 		$('.y2b .check.out').click(function(){
-			if(confirm("¿Estás seguro que deseas hacer check-out en Y2B?")){	
+			if(confirm("¿Estás seguro que deseas hacer check-out en Y2B?")){
 				var url = "CheckOutY2B.php";
-	            $.ajax({    //create an ajax request to load_page.php					
+	            $.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -188,14 +195,14 @@
 					}
 
 	    		});
-	    	}	
+	    	}
 		});
 
 		// Restar alimentos
 		$('.alimentos-alumni .desayuno .restar').click(function(){
-			if(confirm("¿Estás seguro que deseas consumir un desayuno?")){	 
+			if(confirm("¿Estás seguro que deseas consumir un desayuno?")){
 				var url = "RestaDesayuno.php";
-	             $.ajax({    //create an ajax request to load_page.php					
+	             $.ajax({    //create an ajax request to load_page.php
 				 	url: url,
 				 	type: "POST",
 				 	data:$(this).serialize(),
@@ -222,9 +229,9 @@
 	        }
 		});
 		$('.alimentos-aiesec .desayuno .restar').click(function(){
-			if(confirm("¿Estás seguro que deseas consumir un desayuno?")){	 
+			if(confirm("¿Estás seguro que deseas consumir un desayuno?")){
 				var url = "RestaDesayuno.php";
-	             $.ajax({    //create an ajax request to load_page.php					
+	             $.ajax({    //create an ajax request to load_page.php
 				 	url: url,
 				 	type: "POST",
 				 	data:$(this).serialize(),
@@ -251,9 +258,9 @@
 	        }
 		});
 		$('.alimentos-aiesec .comida .restar').click(function(){
-			if(confirm("¿Estás seguro que deseas consumir una comida?")){	
+			if(confirm("¿Estás seguro que deseas consumir una comida?")){
 				var url = "RestaComida.php";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -272,9 +279,9 @@
 			}
 		});
 		$('.alimentos-alumni .comida .restar').click(function(){
-			if(confirm("¿Estás seguro que deseas consumir una comida?")){	
+			if(confirm("¿Estás seguro que deseas consumir una comida?")){
 				var url = "RestaComida.php";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -293,9 +300,9 @@
 			}
 		});
 		$('.alimentos-alumni .cena .restar').click(function(){
-			if(confirm("¿Estás seguro que deseas consumir una cena?")){	
+			if(confirm("¿Estás seguro que deseas consumir una cena?")){
 				var url = "RestaCena.php";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -314,9 +321,9 @@
 			}
 		});
 		$('.alimentos-aiesec .cena .restar').click(function(){
-			if(confirm("¿Estás seguro que deseas consumir una cena?")){	
+			if(confirm("¿Estás seguro que deseas consumir una cena?")){
 				var url = "RestaCena.php";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "POST",
 					data:$(this).serialize(),
@@ -340,7 +347,7 @@
 			var saldo = $('.saldo-form input[type="text"]').val();
 			if(confirm("¿Estás seguro que deseas agregar $"+saldo+".00 US?")){
 				var url = "AgregaSaldo.php?saldo=" + saldo;
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
@@ -351,46 +358,46 @@
 							$('.saldo').text("Saldo: $"+data.saldo+".00 US");
 							$('.saldo-form input[type="text"]').val("");
 							$('.saldo').fadeIn();
-						} 
+						}
 					}
 				});
-			}	
+			}
 		});
 		// drinks
 		$('.liquor').click(function(){
 			console.log("compraLicor");
-			if(confirm("¿Estás seguro que deseas comprar un hard liquor?")){	
+			if(confirm("¿Estás seguro que deseas comprar un hard liquor?")){
 				var url = "CompraDrink.php?drink=licor";
-				$.ajax({    //create an ajax request to load_page.php				
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraDrinksDisponibles(data.nuevoSaldo);
 						$('.saldo').fadeIn();
-						
+
 					}
 				});
 			}
 		});
 		$('.cerveza').click(function(){
 			console.log("compraCerveza");
-			if(confirm("¿Estás seguro que deseas comprar una cerveza?")){	
+			if(confirm("¿Estás seguro que deseas comprar una cerveza?")){
 				var url = "CompraDrink.php?drink=cerveza";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraDrinksDisponibles(data.nuevoSaldo);
 						$('.saldo').fadeIn();
-						
+
 					}
 				});
 			}
@@ -398,34 +405,34 @@
 		// merchandising
 		$('.comodin-1').click(function(){
 			console.log("comodin 1");
-			if(confirm("¿Estás seguro que deseas descontar $1 US de la cuenta?")){	
+			if(confirm("¿Estás seguro que deseas descontar $1 US de la cuenta?")){
 				var url = "CompraMerch.php?item=comodin-1";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo);
 						$('.saldo').fadeIn();
 					}
 				});
-			}	
+			}
 		});
 		$('.comodin-2').click(function(){
 			console.log("comodin 2");
-			if(confirm("¿Estás seguro que deseas descontar $2 US de la cuenta?")){	
+			if(confirm("¿Estás seguro que deseas descontar $2 US de la cuenta?")){
 				var url = "CompraMerch.php?item=comodin-2";
-				$.ajax({    //create an ajax request to load_page.php				
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
 						$('.saldo').fadeIn();
 					}
@@ -434,52 +441,52 @@
 		});
 		$('.comodin-5').click(function(){
 			console.log("comodin 5");
-			if(confirm("¿Estás seguro que deseas descontar $5 US de la cuenta?")){	
+			if(confirm("¿Estás seguro que deseas descontar $5 US de la cuenta?")){
 				var url = "CompraMerch.php?item=comodin-5";
-				$.ajax({    //create an ajax request to load_page.php					
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
 						$('.saldo').fadeIn();
 					}
 				});
-			}	
+			}
 		});
 		$('.sombrero').click(function(){
 			console.log("compra sombrero");
-			if(confirm("¿Estás seguro que deseas comprar un sombrero?")){	
+			if(confirm("¿Estás seguro que deseas comprar un sombrero?")){
 				var url = "CompraMerch.php?item=sombrero";
-				$.ajax({    //create an ajax request to load_page.php			
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
 						$('.saldo').fadeIn();
 					}
 				});
-			}	
+			}
 		});
 		$('.playera').click(function(){
 			console.log("compra playera");
-			if(confirm("¿Estás seguro que deseas comprar una playera?")){	
+			if(confirm("¿Estás seguro que deseas comprar una playera?")){
 				var url = "CompraMerch.php?item=playera";
-				$.ajax({    //create an ajax request to load_page.php			
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
 						$('.saldo').fadeIn();
 					}
@@ -488,16 +495,16 @@
 		});
 		$('.thermo').click(function(){
 			console.log("compra thermo");
-			if(confirm("¿Estás seguro que deseas comprar un thermo?")){	
+			if(confirm("¿Estás seguro que deseas comprar un thermo?")){
 				var url = "CompraMerch.php?item=thermo";
-				$.ajax({    //create an ajax request to load_page.php			
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
 						$('.saldo').fadeIn();
 					}
@@ -506,16 +513,16 @@
 		});
 		$('.mochila').click(function(){
 			console.log("compra mochila");
-			if(confirm("¿Estás seguro que deseas comprar una mochila?")){	
+			if(confirm("¿Estás seguro que deseas comprar una mochila?")){
 				var url = "CompraMerch.php?item=mochila";
-				$.ajax({    //create an ajax request to load_page.php		
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
 						$('.saldo').fadeIn();
 					}
@@ -524,18 +531,18 @@
 		});
 		$('.guayabera').click(function(){
 			console.log("guayabera");
-			if(confirm("¿Estás seguro que deseas comprar una guayabera?")){	
+			if(confirm("¿Estás seguro que deseas comprar una guayabera?")){
 				var url = "CompraMerch.php?item=guayabera";
-				$.ajax({    //create an ajax request to load_page.php			
+				$.ajax({    //create an ajax request to load_page.php
 					url: url,
 					type: "GET",
 					data:$(this).serialize(),
 					dataType:"json",
 					success: function (data) {
 						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");
 						muestraMerchDisponible(data.nuevoSaldo)
-						$('.saldo').fadeIn();	
+						$('.saldo').fadeIn();
 					}
 				});
 			}
@@ -623,7 +630,7 @@ function muestraMerchDisponible(saldo){
 			if(parseInt(saldo) > 4){
 				$(".comodin-5").fadeIn();
 				if(parseInt(saldo) > 9){
-					$('.sombrero').fadeIn();	
+					$('.sombrero').fadeIn();
 					$('.playera').fadeIn();
 					if(parseInt(saldo) > 24){
 						$('.thermo').fadeIn();
@@ -633,8 +640,8 @@ function muestraMerchDisponible(saldo){
 								$('.guayabera').fadeIn();
 							}
 						}
-					} 
-				} 
+					}
+				}
 			}
 		}
 	} else {
@@ -647,7 +654,7 @@ function escondeMerch(){
 	$('.comodin-1').hide();
 	$('.comodin-2').hide();
 	$('.comodin-5').hide();
-	$('.sombrero').hide();	
+	$('.sombrero').hide();
 	$('.playera').hide();
 	$('.thermo').hide();
 	$('.mochila').hide();
