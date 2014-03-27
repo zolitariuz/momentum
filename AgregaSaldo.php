@@ -14,6 +14,10 @@
 	$query="UPDATE T_Saldo SET F_Saldo = F_Saldo + '".$saldoExtra."' WHERE F_Id = '".$id."'";
 	$agregaSaldo=mysqli_query($con, $query);
 
+	// Registra movimiento
+	$query="INSERT INTO T_Movimientos VALUES ('".$id."', 'ABONO SALDO', '".$saldoExtra."', NOW(), 'ABONO SALDO')";
+	$insertaMovimiento=mysqli_query($con, $query);
+
 	// Obtener y mandar nuevo saldo
 	$query="SELECT F_Saldo FROM T_Saldo WHERE F_Id = '".$id."'";
 	$nuevoSaldo=mysqli_query($con, $query );

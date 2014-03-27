@@ -460,7 +460,8 @@ header .movimientos {
 header .movimientos:hover {
   background: #002266;
 }
-.logout {
+.logout,
+.escanear-cb {
   color: #003399;
   text-decoration: none;
   font: 12px / 12px 'Helvetica';

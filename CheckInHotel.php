@@ -2,6 +2,7 @@
 	session_start();
 
 	$id = $_SESSION['id'];
+	$cuarto = $_GET['cuarto'];
 
 	// Conectar con bd
 	$con=mysqli_connect("localhost","momentu1_cuervo","cuervoestudio","momentu1_RegistroCB");
@@ -9,10 +10,10 @@
 	  echo "Error, no se pudo conectar la base de datos: " . mysqli_connect_error();
 	} 
 	// Actualiza checkin hotel
-	$query="UPDATE T_CheckIn SET F_Hotel = 1 WHERE F_Id = '".$id."'";
+	$query="UPDATE T_CheckIn SET F_Hotel = 1, F_Cuarto = '".$cuarto."' WHERE F_Id = '".$id."'";
 	$hacerCheckIn=mysqli_query($con, $query);
 	// Registra movimiento
-	$query="INSERT INTO T_Movimientos VALUES ('".$id."', 'CHECK-IN','1',NOW(), 'CHECK-IN HOTEL')";
+	$query="INSERT INTO T_Movimientos VALUES ('".$id."', 'CHECK-IN','1',NOW(), 'CHECK-IN HOTEL CUARTO ".$cuarto."')";
 	$insertaMovimiento=mysqli_query($con, $query);
 
 	$query="SELECT F_Hotel FROM T_CheckIn WHERE F_Id = '".$id."'";

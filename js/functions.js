@@ -43,400 +43,502 @@
 		});
 
 		// check-in/check-out hotel
-		$('.hotel .check.in').click(function(){
-			var url = "CheckInHotel.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "1"){
-						mostrarCheckOutHotel();
-						mostrarCheckInEventos();	
+		$('.hotel .check.in i').click(function(){
+			var cuarto = $("input.cuarto").val();
+			if(confirm("¿Estás seguro que deseas hacer check-in en el hotel, # de cuarto " + cuarto + "?")){
+				var url = "CheckInHotel.php?cuarto="+cuarto;
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "1"){
+							mostrarCheckOutHotel();
+							mostrarCheckInEventos();
+							mostrarCuarto(cuarto);	
+						}
 					}
-				}
 
-    		});
+	    		});
+	    	}
 		});
 		$('.hotel .check.out').click(function(){
-			var url = "CheckOutHotel.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "-1"){
-						esconderHotel();
-						esconderEventos();	
+			if(confirm("¿Estás seguro que deseas hacer check-out en el hotel?")){
+				var url = "CheckOutHotel.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "-1"){
+							esconderHotel();
+							esconderEventos();	
+						}
 					}
-				}
-    		});
+	    		});
+	    	}	
 		});
 
 		// check-in/check-out gala
 		$('.gala .check.in').click(function(){
-			var url = "CheckInGala.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "1"){
-						mostrarCheckOutGala();	
-						esconderCheckInGala();
-					}	
-				}
+			if(confirm("¿Estás seguro que deseas hacer check-in en la cena de gala?")){	var url = "CheckInGala.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "1"){
+							mostrarCheckOutGala();	
+							esconderCheckInGala();
+						}	
+					}
 
-    		});
+	    		});
+	    	}	
 		});
 		$('.gala .check.out').click(function(){
-			var url = "CheckOutGala.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "-1"){
-						esconderCheckOutGala();
+			if(confirm("¿Estás seguro que deseas hacer check-out en la cena de gala?")){	
+				var url = "CheckOutGala.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "-1"){
+							esconderCheckOutGala();
+						}
 					}
-				}
 
-    		});
+	    		});
+	    	}	
 		});
 
 		// check-in/check-out noche mexicana
 		$('.noche_mex .check.in').click(function(){
-			var url = "CheckInNocheMex.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "1"){
-						mostrarCheckOutNocheMex();	
-						esconderCheckInNocheMex();
+			if(confirm("¿Estás seguro que deseas hacer check-in en la noche mexicana")){
+				var url = "CheckInNocheMex.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "1"){
+							mostrarCheckOutNocheMex();	
+							esconderCheckInNocheMex();
+						}
 					}
-				}
 
-    		});
+    			});
+    		}	
 		});
 		$('.noche_mex .check.out').click(function(){
-			var url = "CheckOutNocheMex.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "-1"){
-						esconderCheckOutNocheMex();
+			if(confirm("¿Estás seguro que deseas hacer check-out en la noche mexicana?")){	
+				var url = "CheckOutNocheMex.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "-1"){
+							esconderCheckOutNocheMex();
+						}
 					}
-				}
 
-    		});
+	    		});
+	    	}	
 		});
 
 		// check-in/check-out noche mexicana
 		$('.y2b .check.in').click(function(){
-			var url = "CheckInY2B.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "1"){
-						mostrarCheckOutY2B();
-						esconderCheckInY2B();
+			if(confirm("¿Estás seguro que deseas hacer check-in en Y2B?")){	
+				var url = "CheckInY2B.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "1"){
+							mostrarCheckOutY2B();
+							esconderCheckInY2B();
+						}
 					}
-				}
 
-    		});
+	    		});
+	        }
 		});
 		$('.y2b .check.out').click(function(){
-			var url = "CheckOutY2B.php";
-            $.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.hotel == "-1"){
-						esconderCheckOutY2B();
+			if(confirm("¿Estás seguro que deseas hacer check-out en Y2B?")){	
+				var url = "CheckOutY2B.php";
+	            $.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.hotel == "-1"){
+							esconderCheckOutY2B();
+						}
 					}
-				}
 
-    		});
+	    		});
+	    	}	
 		});
 
 		// Restar alimentos
-		$('.desayuno .restar').click(function(){
-			 var url = "RestaDesayuno.php";
-             $.ajax({    //create an ajax request to load_page.php					
-			 	url: url,
-			 	type: "POST",
-			 	data:$(this).serialize(),
-			 	dataType:"json",
-			 	success: function (data) {
-			 		if(data.desayuno == '1'){
-			 			var cantidad = $('.desayuno .cantidad').text();
-			 			$('.desayuno .cantidad').text(parseInt(cantidad) - 1);
-			 		} else if(data.desayuno == '0'){
-			 			$('.desayuno .restar').hide();
-			 			var cantidad = $('.desayuno .cantidad').text();
-			 			$('.desayuno .cantidad').text(parseInt(cantidad) - 1);
-			 		}
-			 	}
+		$('.alimentos-alumni .desayuno .restar').click(function(){
+			if(confirm("¿Estás seguro que deseas consumir un desayuno?")){	 
+				var url = "RestaDesayuno.php";
+	             $.ajax({    //create an ajax request to load_page.php					
+				 	url: url,
+				 	type: "POST",
+				 	data:$(this).serialize(),
+				 	dataType:"json",
+				 	success: function (data) {
+				 		if(data.desayuno == '1'){
+				 			var cantidad = $('.alimentos-alumni .desayuno .cantidad').text();
+				 			console.log(cantidad);
+				 			$('.desayuno .cantidad').text('');
+				 			console.log($('.desayuno .cantidad').text());
+				 			$('.alimentos-alumni .desayuno .cantidad').text(parseInt(cantidad) - 1);
+				 		} else if(data.desayuno == '0'){
 
-     		});
-		});
-		$('.comida .restar').click(function(){
-			var url = "RestaComida.php";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.comida == '1'){
-						var cantidad = $('.comida .cantidad').text();
-						$('.comida .cantidad').text(parseInt(cantidad) - 1);
-					} else if(data.comida == '0'){
-						$('.comida .restar').hide();
-						var cantidad = $('.comida .cantidad').text();
-						$('.comida .cantidad').text(parseInt(cantidad) - 1);
-					}
-				}
-			});
-		});
-		$('.cena .restar').click(function(){
-			var url = "RestaCena.php";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "POST",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.cena == '1'){
-						var cantidad = $('.cena .cantidad').text();
-						$('.cena .cantidad').text(parseInt(cantidad) - 1);
-					} else if(data.cena == '0'){
-						$('.cena .restar').hide();
-						var cantidad = $('.cena .cantidad').text();
-						$('.cena .cantidad').text(parseInt(cantidad) - 1);
-					}
-				}
-			});
-		});
+				 			$('.desayuno .restar').hide();
+				 			var cantidad = $('.alimentos-alumni .desayuno .cantidad').text();
+				 			console.log(cantidad);
+				 			$('.desayuno .cantidad').text('');
+				 			console.log($('.desayuno .cantidad').text());
+				 			$('.alimentos-alumni .desayuno .cantidad').text(parseInt(cantidad) - 1);
+				 		}
+				 	}
 
+	     		});
+	        }
+		});
+		$('.alimentos-aiesec .desayuno .restar').click(function(){
+			if(confirm("¿Estás seguro que deseas consumir un desayuno?")){	 
+				var url = "RestaDesayuno.php";
+	             $.ajax({    //create an ajax request to load_page.php					
+				 	url: url,
+				 	type: "POST",
+				 	data:$(this).serialize(),
+				 	dataType:"json",
+				 	success: function (data) {
+				 		if(data.desayuno == '1'){
+				 			var cantidad = $('.alimentos-aiesec .desayuno .cantidad').text();
+				 			console.log(cantidad);
+				 			$('.desayuno .cantidad').text('');
+				 			console.log($('.desayuno .cantidad').text());
+				 			$('.alimentos-aiesec .desayuno .cantidad').text(parseInt(cantidad) - 1);
+				 		} else if(data.desayuno == '0'){
+
+				 			$('.desayuno .restar').hide();
+				 			var cantidad = $('.alimentos-aiesec .desayuno .cantidad').text();
+				 			console.log(cantidad);
+				 			$('.desayuno .cantidad').text('');
+				 			console.log($('.desayuno .cantidad').text());
+				 			$('.alimentos-aiesec .desayuno .cantidad').text(parseInt(cantidad) - 1);
+				 		}
+				 	}
+
+	     		});
+	        }
+		});
+		$('.alimentos-aiesec .comida .restar').click(function(){
+			if(confirm("¿Estás seguro que deseas consumir una comida?")){	
+				var url = "RestaComida.php";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.comida == '1'){
+							var cantidad = $('.alimentos-aiesec .comida .cantidad').text();
+							$('.alimentos-aiesec .comida .cantidad').text(parseInt(cantidad) - 1);
+						} else if(data.comida == '0'){
+							$('.comida .restar').hide();
+							var cantidad = $('.alimentos-aiesec .comida .cantidad').text();
+							$('.alimentos-aiesec .comida .cantidad').text(parseInt(cantidad) - 1);
+						}
+					}
+				});
+			}
+		});
+		$('.alimentos-alumni .comida .restar').click(function(){
+			if(confirm("¿Estás seguro que deseas consumir una comida?")){	
+				var url = "RestaComida.php";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.comida == '1'){
+							var cantidad = $('.alimentos-alumni .comida .cantidad').text();
+							$('.alimentos-alumni .comida .cantidad').text(parseInt(cantidad) - 1);
+						} else if(data.comida == '0'){
+							$('.comida .restar').hide();
+							var cantidad = $('.alimentos-alumni .comida .cantidad').text();
+							$('.alimentos-alumni .comida .cantidad').text(parseInt(cantidad) - 1);
+						}
+					}
+				});
+			}
+		});
+		$('.alimentos-alumni .cena .restar').click(function(){
+			if(confirm("¿Estás seguro que deseas consumir una cena?")){	
+				var url = "RestaCena.php";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.cena == '1'){
+							var cantidad = $('.alimentos-alumni .cena .cantidad').text();
+							$('.alimentos-alumni .cena .cantidad').text(parseInt(cantidad) - 1);
+						} else if(data.cena == '0'){
+							$('.cena .restar').hide();
+							var cantidad = $('.alimentos-alumni .cena .cantidad').text();
+							$('.alimentos-alumni .cena .cantidad').text(parseInt(cantidad) - 1);
+						}
+					}
+				});
+			}
+		});
+		$('.alimentos-aiesec .cena .restar').click(function(){
+			if(confirm("¿Estás seguro que deseas consumir una cena?")){	
+				var url = "RestaCena.php";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "POST",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.cena == '1'){
+							var cantidad = $('.alimentos-aiesec .cena .cantidad').text();
+							$('.alimentos-aiesec .cena .cantidad').text(parseInt(cantidad) - 1);
+						} else if(data.cena == '0'){
+							$('.cena .restar').hide();
+							var cantidad = $('.alimentos-aiesec .cena .cantidad').text();
+							$('.alimentos-aiesec .cena .cantidad').text(parseInt(cantidad) - 1);
+						}
+					}
+				});
+			}
+		});
 		// agregar saldo
 		$('.saldo-form input[type="submit"]').click(function(e){
 			e.preventDefault();
 			var saldo = $('.saldo-form input[type="text"]').val();
-			var url = "AgregaSaldo.php?saldo=" + saldo;
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					if(data.agregado == '1'){
-						$('.saldo').hide();
-						$('.saldo').text("Saldo: $"+data.saldo+".00 US");	
-						alert("Se agregaron $" + saldo + ".00 US correctamente.");
-						$('.saldo-form input[type="text"]').val("");
-						$('.saldo').fadeIn();
-					} 
-				}
-			});
+			if(confirm("¿Estás seguro que deseas agregar $"+saldo+".00 US?")){
+				var url = "AgregaSaldo.php?saldo=" + saldo;
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						if(data.agregado == '1'){
+							$('.saldo').hide();
+							$('.saldo').text("Saldo: $"+data.saldo+".00 US");
+							$('.saldo-form input[type="text"]').val("");
+							$('.saldo').fadeIn();
+						} 
+					}
+				});
+			}	
 		});
 		// drinks
 		$('.liquor').click(function(){
 			console.log("compraLicor");
-			var url = "CompraDrink.php?drink=licor";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraDrinksDisponibles(data.nuevoSaldo);
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar un hard liquor?")){	
+				var url = "CompraDrink.php?drink=licor";
+				$.ajax({    //create an ajax request to load_page.php				
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraDrinksDisponibles(data.nuevoSaldo);
+						$('.saldo').fadeIn();
+						
+					}
+				});
+			}
 		});
 		$('.cerveza').click(function(){
 			console.log("compraCerveza");
-			var url = "CompraDrink.php?drink=cerveza";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraDrinksDisponibles(data.nuevoSaldo);
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar una cerveza?")){	
+				var url = "CompraDrink.php?drink=cerveza";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraDrinksDisponibles(data.nuevoSaldo);
+						$('.saldo').fadeIn();
+						
+					}
+				});
+			}
 		});
 		// merchandising
 		$('.comodin-1').click(function(){
 			console.log("comodin 1");
-			var url = "CompraMerch.php?item=comodin-1";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo);
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas descontar $1 US de la cuenta?")){	
+				var url = "CompraMerch.php?item=comodin-1";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo);
+						$('.saldo').fadeIn();
+					}
+				});
+			}	
 		});
 		$('.comodin-2').click(function(){
 			console.log("comodin 2");
-			var url = "CompraMerch.php?item=comodin-2";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas descontar $2 US de la cuenta?")){	
+				var url = "CompraMerch.php?item=comodin-2";
+				$.ajax({    //create an ajax request to load_page.php				
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();
+					}
+				});
+			}
 		});
 		$('.comodin-5').click(function(){
 			console.log("comodin 5");
-			var url = "CompraMerch.php?item=comodin-5";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas descontar $5 US de la cuenta?")){	
+				var url = "CompraMerch.php?item=comodin-5";
+				$.ajax({    //create an ajax request to load_page.php					
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();
+					}
+				});
+			}	
 		});
 		$('.sombrero').click(function(){
 			console.log("compra sombrero");
-			var url = "CompraMerch.php?item=sombrero";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar un sombrero?")){	
+				var url = "CompraMerch.php?item=sombrero";
+				$.ajax({    //create an ajax request to load_page.php			
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();
+					}
+				});
+			}	
 		});
 		$('.playera').click(function(){
 			console.log("compra playera");
-			var url = "CompraMerch.php?item=playera";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar una playera?")){	
+				var url = "CompraMerch.php?item=playera";
+				$.ajax({    //create an ajax request to load_page.php			
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();
+					}
+				});
+			}
 		});
 		$('.thermo').click(function(){
 			console.log("compra thermo");
-			var url = "CompraMerch.php?item=thermo";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar un thermo?")){	
+				var url = "CompraMerch.php?item=thermo";
+				$.ajax({    //create an ajax request to load_page.php			
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();
+					}
+				});
+			}
 		});
 		$('.mochila').click(function(){
 			console.log("compra mochila");
-			var url = "CompraMerch.php?item=mochila";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar una mochila?")){	
+				var url = "CompraMerch.php?item=mochila";
+				$.ajax({    //create an ajax request to load_page.php		
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();
+					}
+				});
+			}
 		});
 		$('.guayabera').click(function(){
 			console.log("guayabera");
-			var url = "CompraMerch.php?item=guayabera";
-			$.ajax({    //create an ajax request to load_page.php					
-				url: url,
-				type: "GET",
-				data:$(this).serialize(),
-				dataType:"json",
-				success: function (data) {
-					$('.saldo').hide();
-					$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
-					alert("Compra exitosa. Saldo disponible: $"+data.nuevoSaldo+".00 US" );
-					muestraMerchDisponible(data.nuevoSaldo)
-					$('.saldo').fadeIn();
-
-					
-				}
-			});
+			if(confirm("¿Estás seguro que deseas comprar una guayabera?")){	
+				var url = "CompraMerch.php?item=guayabera";
+				$.ajax({    //create an ajax request to load_page.php			
+					url: url,
+					type: "GET",
+					data:$(this).serialize(),
+					dataType:"json",
+					success: function (data) {
+						$('.saldo').hide();
+						$('.saldo').text("Saldo: $"+data.nuevoSaldo+".00 US");	
+						muestraMerchDisponible(data.nuevoSaldo)
+						$('.saldo').fadeIn();	
+					}
+				});
+			}
 		});
 
 	});
@@ -551,4 +653,8 @@ function escondeMerch(){
 	$('.mochila').hide();
 	$('.guayabera').hide();
 
+}
+
+function mostrarCuarto(c){
+	$('.info-usuario li.no-cuarto').html('<strong>No. de cuarto: </strong>'+c+'</li>');
 }

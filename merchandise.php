@@ -50,6 +50,10 @@
 						Logout
 					</a>
 
+					<a class="escanear-cb columna c-2 right" href="general.php">
+						Escanear código de barras
+					</a>
+					
 					<div class="clear"></div>
 
 					<a class="span c-1" href="general.php">
@@ -91,7 +95,7 @@
 
 						<li class="columna c-4"><strong>Nombre: </strong><?php echo $nombre." ".$apellidos; ?></li>
 						<li class="columna c-4"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
-						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00</li>
+						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00 US</li>
 
 					</ul><!-- info-usuario -->
 
@@ -163,7 +167,7 @@
 
 				<div class="columna c-6 insuficiente hide">
 
-					<div class="">Saldo insuficiente para comprar merchandising, <a href="saldo.php">¿deseas agregar más dinero?</a></div>
+					<div class="">Saldo insuficiente para comprar merchandise, <a href="saldo.php">¿deseas agregar más dinero?</a></div>
 
 				</div><!-- columna c-6 -->
 

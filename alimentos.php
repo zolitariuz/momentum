@@ -50,6 +50,10 @@
 					<a class="logout columna c-1 right" href="#">
 						Logout
 					</a>
+					
+					<a class="escanear-cb columna c-2 right" href="general.php">
+						Escanear código de barras
+					</a>
 
 					<div class="clear"></div>
 

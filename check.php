@@ -1,7 +1,7 @@
 <?php 
 	session_start();
 
-	if(isset($_SESSION['id']))
+	if(isset($_SESSION['id']) && $_GET['cb'] == '')
 		$cb = $_SESSION['id']; 
 	else
 		$cb = $_GET['cb']; 
@@ -56,6 +56,10 @@
 					<a class="logout columna c-1 right" href="#">
 						Logout
 					</a>
+					
+					<a class="escanear-cb columna c-2 right" href="general.php">
+						Escanear código de barras
+					</a>
 
 					<div class="clear"></div>
 
@@ -96,8 +100,9 @@
 					<ul class="clearfix">
 
 						<li class="columna c-4"><strong>Nombre: </strong><?php echo $nombre." ".$apellidos; ?></li>
-						<li class="columna c-4"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
+						<li class="columna c-4 no-cuarto"><strong>No. de cuarto: </strong><?php echo $cuarto; ?></li>
 						<li class="saldo columna c-4">Saldo: $<?php echo $saldo; ?>.00 US</li>
+						
 					</ul><!-- info-usuario -->
 
 					<ul class="clearfix">
@@ -124,6 +129,7 @@
 
 						<div class="check in columna c-6">
 							<i class="fa fa-sign-in fa-2x"></i>
+							<input name="cuarto" type="text" class="cuarto" placeholder="No. de cuarto">
 						</div><!-- in -->
 
 						<div class="check out columna c-6 hide">
@@ -192,6 +198,7 @@
 				var galaCheckIn = '<?php Print($ci_gala); ?>';
 				var nocheCheckIn = '<?php Print($ci_noche_mex); ?>';
 				var y2bCheckIn = '<?php Print($ci_y2b); ?>';
+				console.log("check.in");
 				if(hotelCheckIn==0) {
 					mostrarCheckInHotel();
 					esconderEventos();
@@ -201,23 +208,27 @@
 					esconderEventos();
 				}
 				else {
+
 					mostrarCheckOutHotel();
-					if(galaCheckIn=='1'){
+					if(galaCheckIn==1){
 						esconderCheckInGala();
 						mostrarCheckOutGala();
-					} else if (galaCheckIn=='-1'){
+					} else if (galaCheckIn=="-1"){
+						esconderCheckInGala();
 						esconderCheckOutGala();
 					}
-					if(nocheCheckIn=='1'){
+					if(nocheCheckIn==1){
 						esconderCheckInNocheMex();
 						mostrarCheckOutNocheMex();
 					} else if (galaCheckIn=='-1'){
+						esconderCheckInNocheMex();
 						esconderCheckOutNocheMex();
 					}
 					if(y2bCheckIn=='1'){
 						esconderCheckInY2B();
 						mostrarCheckOutY2B();
 					} else if (galaCheckIn=='-1'){
+						esconderCheckInY2B();
 						esconderCheckOutY2B();
 					}
 				}

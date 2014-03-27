@@ -54,6 +54,10 @@
 						Logout
 					</a>
 
+					<a class="escanear-cb columna c-2 right" href="general.php">
+						Escanear código de barras
+					</a>
+					
 					<div class="clear"></div>
 
 					<a class="span c-1" href="general.php">
